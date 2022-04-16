@@ -1,7 +1,7 @@
 package domain;
 
-public interface LotteryNumberSupplier {
-    void restore();
+import java.util.Iterator;
 
-    LotteryNumber getNext();
+public interface LotteryNumberSupplier extends Iterator<LotteryNumber> {
+    void restore();
 }
