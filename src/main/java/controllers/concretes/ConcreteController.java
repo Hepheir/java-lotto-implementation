@@ -14,7 +14,7 @@ import controllers.Controller;
 
 public class ConcreteController implements Controller {
     // TODO: Disable Sample Input
-    private static final Boolean USE_SAMPLE_INPUT = true;
+    private static final Boolean USE_SAMPLE_INPUT = false;
     private static Controller instance = new ConcreteController();
     private static BufferedReader bufferedReader;
 
