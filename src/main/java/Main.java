@@ -2,13 +2,14 @@ import java.util.Arrays;
 
 import controllers.Controller;
 import domain.Driver;
-import domain.LotteryGrade;
+import domain.Grade;
 import domain.LotteryGrader;
 import domain.LotteryNumber;
 import domain.LotteryNumberSupplier;
 import domain.LotteryTicket;
 import domain.LotteryTicketBuilder;
 import domain.TicketGroup;
+import domain.enums.LotteryGrade;
 import utils.Analytics;
 import views.View;
 
@@ -20,7 +21,7 @@ public class Main {
         LotteryTicketBuilder ticketBuilder = null;
         LotteryNumberSupplier manualNumberSupplier = null;
         LotteryNumberSupplier autoNumberSupplier = null;
-        Analytics<LotteryGrade> analytics = null;
+        Analytics<Grade> analytics = null;
         TicketGroup<LotteryTicket> ticketGroup = null;
         LotteryGrader grader = null;
 
@@ -52,9 +53,13 @@ public class Main {
         grader.setBonusNumber(bonusNumber);
 
         view.printWinningAnalytics();
-        ticketGroup.getTickets().stream().map(grader::grade).forEach(analytics::add);
+        ticketGroup.getTickets().stream()
+                .map(grader::grade)
+                .map(LotteryGrade::getValue)
+                .forEach(analytics::add);
 
-        Arrays.asList(LotteryGrade.values())
+        Arrays.asList(LotteryGrade.values()).stream()
+                .map(LotteryGrade::getValue)
                 .forEach(grade -> view.printGradeAndPrizeAndQuantity(
                         analytics.getLabel(grade),
                         analytics.getValue(grade),

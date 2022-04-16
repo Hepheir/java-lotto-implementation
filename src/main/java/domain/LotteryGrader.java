@@ -1,5 +1,7 @@
 package domain;
 
+import domain.enums.LotteryGrade;
+
 public interface LotteryGrader {
     void setWinningNumbers(LotteryTicket winningNumbers);
 

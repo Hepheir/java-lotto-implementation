@@ -1,6 +1,6 @@
 package utils;
 
-public interface Analytics<E> {
+public interface Analytics<E extends AnalyticsItem> {
     void clear();
 
     void add(E e);
