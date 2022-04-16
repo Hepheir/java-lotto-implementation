@@ -9,16 +9,16 @@ public enum LotteryGrade {
     NONE(new Grade("등수 외", 0));
 
     private static class Grade {
-        private final String title;
+        private final String label;
         private final Integer reward;
 
-        Grade(String title, Integer reward) {
-            this.title = title;
+        Grade(String label, Integer reward) {
+            this.label = label;
             this.reward = reward;
         }
 
         String getLabel() {
-            return title;
+            return label;
         }
 
         Integer getReward() {
