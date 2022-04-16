@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 import controllers.Controller;
+import controllers.concretes.ConcreteController;
 import domain.Driver;
 import domain.Grade;
 import domain.LotteryGrader;
@@ -9,21 +10,31 @@ import domain.LotteryNumberSupplier;
 import domain.LotteryTicket;
 import domain.LotteryTicketBuilder;
 import domain.TicketGroup;
+import domain.concretes.AutoLotteryNumberSupplier;
+import domain.concretes.ConcreteDriver;
+import domain.concretes.ConcreteLotteryGrader;
+import domain.concretes.ConcreteLotteryTicketBuilder;
+import domain.concretes.ConcreteTicketGroup;
+import domain.concretes.ManualLotteryNumberSupplier;
 import domain.enums.LotteryGrade;
+import languages.Korean;
 import utils.Analytics;
+import utils.concretes.ConcreteAnalytics;
 import views.View;
+import views.concretes.ConcreteView;
 
 public class Main {
     public static void main(String[] args) {
-        Controller controller = null;
-        View view = null;
-        Driver driver = null;
-        LotteryTicketBuilder ticketBuilder = null;
-        LotteryNumberSupplier manualNumberSupplier = null;
-        LotteryNumberSupplier autoNumberSupplier = null;
-        Analytics<Grade> analytics = null;
-        TicketGroup<LotteryTicket> ticketGroup = null;
-        LotteryGrader grader = null;
+        Controller controller = ConcreteController.getInstance();
+        View view = ConcreteView.getInstance();
+        Driver driver = new ConcreteDriver();
+        LotteryTicketBuilder ticketBuilder = new ConcreteLotteryTicketBuilder();
+        LotteryNumberSupplier manualNumberSupplier = new ManualLotteryNumberSupplier();
+        LotteryNumberSupplier autoNumberSupplier = new AutoLotteryNumberSupplier();
+        Analytics<Grade> analytics = new ConcreteAnalytics<>();
+        TicketGroup<LotteryTicket> ticketGroup = new ConcreteTicketGroup<>();
+        LotteryGrader grader = new ConcreteLotteryGrader();
+        view.setLanguage(new Korean());
 
         view.printEnterPurchaseAmount();
         Integer money = controller.readInteger();
