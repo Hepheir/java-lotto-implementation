@@ -1,4 +1,6 @@
-package domain;
+package domain.enums;
+
+import domain.Grade;
 
 public enum LotteryGrade {
     FIRST_PLACE(new Grade("1등", 2000000000)),
