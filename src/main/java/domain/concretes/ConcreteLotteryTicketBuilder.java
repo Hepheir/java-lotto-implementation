@@ -3,9 +3,10 @@ package domain.concretes;
 import domain.LotteryNumber;
 import domain.LotteryTicket;
 import domain.LotteryTicketBuilder;
+import domain.Lotto;
 
 public class ConcreteLotteryTicketBuilder implements LotteryTicketBuilder {
-    private static Class<? extends LotteryTicket> concrete = ConcreteLotteryTicket.class;
+    private static Class<? extends LotteryTicket> concrete = Lotto.class;
     private LotteryTicket ticket;
 
     @Override
