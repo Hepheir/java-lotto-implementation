@@ -75,12 +75,12 @@ public class Main {
 
         Arrays.asList(LotteryGrade.values()).stream()
                 .map(LotteryGrade::getValue)
-                .forEach(grade -> Main.printGradeAndPrizeAndQuantity(view, grade, analytics));
+                .forEach(Main::printGradeAndPrizeAndQuantity);
 
         view.printProfitReport(analytics.getTotalValueOfAll().doubleValue() / money.doubleValue());
     }
 
-    private static void printGradeAndPrizeAndQuantity(View view, Grade grade, Analytics<Grade> analytics) {
+    private static void printGradeAndPrizeAndQuantity(Grade grade) {
         view.printGradeAndPrizeAndQuantity(
                 analytics.getLabelOf(grade),
                 analytics.getValueOf(grade),
