@@ -2,10 +2,9 @@ package utils.concretes;
 
 import utils.Accumulator;
 import utils.Analytics;
-import utils.AnalyticsItem;
 import utils.Counter;
 
-public class ConcreteAnalytics<E extends AnalyticsItem> implements Analytics<E> {
+public class ConcreteAnalytics<E extends Analytics.AnalyticsItem> implements Analytics<E> {
     private final Counter<E> counter = new ConcreteCounter<>();
     private final Accumulator accumulator = new ConcreteAccumulator();
 

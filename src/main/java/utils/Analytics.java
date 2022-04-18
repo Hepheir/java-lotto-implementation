@@ -1,6 +1,12 @@
 package utils;
 
-public interface Analytics<E extends AnalyticsItem> {
+public interface Analytics<E extends Analytics.AnalyticsItem> {
+    public static interface AnalyticsItem {
+        public String getLabel();
+
+        public Integer getValue();
+    }
+
     void clear();
 
     void add(E e);
