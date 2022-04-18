@@ -21,23 +21,29 @@ public class ConcreteAnalytics<E extends AnalyticsItem> implements Analytics<E> 
         accumulator.add(e.getValue());
     }
 
+    @Deprecated
     @Override
-    public String getLabel(E e) {
+    public String getLabelOf(E e) {
         return e.getLabel();
     }
 
     @Override
-    public Integer getValue(E e) {
-        return e.getValue() * getQuantity(e);
+    public Integer getValueOf(E e) {
+        return e.getValue();
     }
 
     @Override
-    public Integer getQuantity(E e) {
+    public Integer getTotalValueOf(E e) {
+        return getValueOf(e) * getQuantityOf(e);
+    }
+
+    @Override
+    public Integer getQuantityOf(E e) {
         return counter.getCount(e);
     }
 
     @Override
-    public Integer getTotalValue() {
+    public Integer getTotalValueOfAll() {
         return accumulator.getValue();
     }
 

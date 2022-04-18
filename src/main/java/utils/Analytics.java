@@ -5,11 +5,13 @@ public interface Analytics<E extends AnalyticsItem> {
 
     void add(E e);
 
-    String getLabel(E e);
+    String getLabelOf(E e);
 
-    Integer getValue(E e);
+    Integer getValueOf(E e);
 
-    Integer getQuantity(E e);
+    Integer getTotalValueOf(E e);
 
-    Integer getTotalValue();
+    Integer getQuantityOf(E e);
+
+    Integer getTotalValueOfAll();
 }
