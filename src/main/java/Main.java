@@ -3,7 +3,6 @@ import java.util.Arrays;
 import controllers.Controller;
 import controllers.concretes.ConcreteController;
 import domain.Driver;
-import domain.Grade;
 import domain.LotteryGrader;
 import domain.LotteryNumber;
 import domain.LotteryNumberSupplier;
@@ -31,7 +30,7 @@ public class Main {
     private static LotteryTicketBuilder ticketBuilder = new ConcreteLotteryTicketBuilder();
     private static LotteryNumberSupplier manualNumberSupplier = new ManualLotteryNumberSupplier();
     private static LotteryNumberSupplier autoNumberSupplier = new AutoLotteryNumberSupplier();
-    private static Analytics<Grade> analytics = new ConcreteAnalytics<>();
+    private static Analytics<LotteryGrade> analytics = new ConcreteAnalytics<>();
     private static TicketGroup<Lotto> ticketGroup = new LottoGroup();
     private static LotteryGrader grader = new ConcreteLotteryGrader();
 
@@ -70,17 +69,15 @@ public class Main {
         view.printWinningAnalytics();
         ticketGroup.getTickets().stream()
                 .map(grader::grade)
-                .map(LotteryGrade::getValue)
                 .forEach(analytics::add);
 
-        Arrays.asList(LotteryGrade.values()).stream()
-                .map(LotteryGrade::getValue)
+        Arrays.asList(LotteryGrade.values())
                 .forEach(Main::printGradeAndPrizeAndQuantity);
 
         view.printProfitReport(analytics.getTotalValueOfAll().doubleValue() / money.doubleValue());
     }
 
-    private static void printGradeAndPrizeAndQuantity(Grade grade) {
+    private static void printGradeAndPrizeAndQuantity(LotteryGrade grade) {
         view.printGradeAndPrizeAndQuantity(
                 analytics.getLabelOf(grade),
                 analytics.getValueOf(grade),
