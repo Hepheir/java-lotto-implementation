@@ -25,18 +25,21 @@ import views.View;
 import views.concretes.ConcreteView;
 
 public class Main {
-    public static void main(String[] args) {
-        Controller controller = ConcreteController.getInstance();
-        View view = ConcreteView.getInstance();
-        Driver driver = new ConcreteDriver();
-        LotteryTicketBuilder ticketBuilder = new ConcreteLotteryTicketBuilder();
-        LotteryNumberSupplier manualNumberSupplier = new ManualLotteryNumberSupplier();
-        LotteryNumberSupplier autoNumberSupplier = new AutoLotteryNumberSupplier();
-        Analytics<Grade> analytics = new ConcreteAnalytics<>();
-        TicketGroup<Lotto> ticketGroup = new LottoGroup();
-        LotteryGrader grader = new ConcreteLotteryGrader();
-        view.setLanguage(new Korean());
+    private static Controller controller = ConcreteController.getInstance();
+    private static View view = ConcreteView.getInstance();
+    private static Driver driver = new ConcreteDriver();
+    private static LotteryTicketBuilder ticketBuilder = new ConcreteLotteryTicketBuilder();
+    private static LotteryNumberSupplier manualNumberSupplier = new ManualLotteryNumberSupplier();
+    private static LotteryNumberSupplier autoNumberSupplier = new AutoLotteryNumberSupplier();
+    private static Analytics<Grade> analytics = new ConcreteAnalytics<>();
+    private static TicketGroup<Lotto> ticketGroup = new LottoGroup();
+    private static LotteryGrader grader = new ConcreteLotteryGrader();
 
+    static {
+        view.setLanguage(new Korean());
+    }
+
+    public static void main(String[] args) {
         view.printEnterPurchaseAmount();
         Integer money = controller.readInteger();
         Integer countOfBuyableTickets = money / LotteryTicket.PRICE;
